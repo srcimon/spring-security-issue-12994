@@ -11,6 +11,15 @@ class SessionBehaviourTest {
     private static final String SESSION_NEW_API_URL = "http://localhost:8080/api/is-session-new";
 
     @Test
+    void oneUser_unknownUser_notAuthenticated() {
+        given()
+                .auth().basic("unknown-user", "pass3")
+                .when().get(SESSION_NEW_API_URL)
+                .then()
+                .statusCode(401);
+    }
+
+    @Test
     void oneUser_multipleRequests_reusesSession() {
         CookieFilter cookieFilter = new CookieFilter();
 

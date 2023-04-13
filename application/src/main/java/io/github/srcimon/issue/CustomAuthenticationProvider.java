@@ -1,6 +1,7 @@
 package io.github.srcimon.issue;
 
 import java.util.ArrayList;
+import java.util.List;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -12,15 +13,17 @@ public class CustomAuthenticationProvider implements AuthenticationProvider {
 
     @Override
     public Authentication authenticate(Authentication authentication) throws AuthenticationException {
-
         String name = authentication.getName();
         String password = authentication.getCredentials().toString();
-
-        return new UsernamePasswordAuthenticationToken(name, password, new ArrayList<>());
+        if(List.of("user1", "user2").contains(name)) {
+            return new UsernamePasswordAuthenticationToken(name, password, new ArrayList<>());
+        }
+        return null;
     }
 
     @Override
     public boolean supports(Class<?> authentication) {
+        System.out.println(authentication.equals(UsernamePasswordAuthenticationToken.class));
         return authentication.equals(UsernamePasswordAuthenticationToken.class);
     }
 }
