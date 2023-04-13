@@ -19,7 +19,6 @@ public class UserChangeFilter extends AbstractPreAuthenticatedProcessingFilter {
     @Override
     protected Object getPreAuthenticatedPrincipal(HttpServletRequest request) {
         UsernamePasswordAuthenticationToken authenticationToken = new BasicAuthenticationConverter().convert(request);
-
         return authenticationToken == null ? null : authenticationToken.getPrincipal();
     }
 

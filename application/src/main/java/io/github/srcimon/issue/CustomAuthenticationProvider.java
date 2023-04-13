@@ -23,7 +23,6 @@ public class CustomAuthenticationProvider implements AuthenticationProvider {
 
     @Override
     public boolean supports(Class<?> authentication) {
-        System.out.println(authentication.equals(UsernamePasswordAuthenticationToken.class));
         return authentication.equals(UsernamePasswordAuthenticationToken.class);
     }
 }
