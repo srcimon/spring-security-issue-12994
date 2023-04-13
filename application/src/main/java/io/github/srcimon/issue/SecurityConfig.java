@@ -21,11 +21,12 @@ public class SecurityConfig {
     }
 
     @Bean
-    public SecurityFilterChain apiSecurityFilterChain(final HttpSecurity http) throws Exception {
+    public SecurityFilterChain apiSecurityFilterChain(final HttpSecurity http, UserChangeFilter userChangeFilter) throws Exception {
         return http
                 .httpBasic()
                 .and()
-                .sessionManagement().sessionAuthenticationStrategy(new ChangeSessionIdAuthenticationStrategy()).and()
+                .addFilter(userChangeFilter)
+                //.sessionManagement().sessionAuthenticationStrategy(new ChangeSessionIdAuthenticationStrategy()).and()
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers("/api/**").authenticated()
                         .requestMatchers("/**").denyAll())
