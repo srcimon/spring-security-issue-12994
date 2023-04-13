@@ -10,9 +10,13 @@
   <version>0.0.1-SNAPSHOT</version>
   <packaging>pom</packaging>
   <properties>
-    <java.compiler.version>17</java.compiler.version>
+    <maven.compiler.source>17</maven.compiler.source>
+    <maven.compiler.target>17</maven.compiler.target>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
   </properties>
 
   <modules>
+    <module>application</module>
+    <module>integrationtests</module>
   </modules>
 </project>
