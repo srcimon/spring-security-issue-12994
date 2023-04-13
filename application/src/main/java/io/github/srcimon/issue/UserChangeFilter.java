@@ -1,11 +1,11 @@
 package io.github.srcimon.issue;
 
+import javax.servlet.http.HttpServletRequest;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.web.authentication.preauth.AbstractPreAuthenticatedProcessingFilter;
 import org.springframework.security.web.authentication.www.BasicAuthenticationConverter;
 import org.springframework.stereotype.Component;
-import jakarta.servlet.http.HttpServletRequest;
 
 @Component
 public class UserChangeFilter extends AbstractPreAuthenticatedProcessingFilter {

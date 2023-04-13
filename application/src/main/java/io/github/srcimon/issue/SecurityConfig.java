@@ -31,11 +31,11 @@ public class SecurityConfig {
 
                 // not setting sessionAuthenticationStrategy -> test case twoUsers_multipleRequests_doesntReuseSession fails
                 // setting sessionAuthenticationStrategy -> test case oneUser_multipleRequests_reusesSession fails
-                .sessionManagement().sessionAuthenticationStrategy(new ChangeSessionIdAuthenticationStrategy()).and()
+              //  .sessionManagement().sessionAuthenticationStrategy(new NullAuthenticatedSessionStrategy()).and()
 
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/api/**").authenticated()
-                        .requestMatchers("/**").denyAll())
+                        .antMatchers("/api/**").authenticated()
+                        .antMatchers("/**").denyAll())
                 .build();
     }
 }
