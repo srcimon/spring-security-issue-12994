@@ -8,7 +8,9 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.preauth.AbstractPreAuthenticatedProcessingFilter;
+import org.springframework.security.web.authentication.session.ChangeSessionIdAuthenticationStrategy;
 import org.springframework.security.web.authentication.session.NullAuthenticatedSessionStrategy;
+import org.springframework.security.web.authentication.session.SessionAuthenticationStrategy;
 
 @Configuration
 @EnableWebSecurity
@@ -29,7 +31,7 @@ public class SecurityConfig {
 
                 // not setting sessionAuthenticationStrategy -> test case twoUsers_multipleRequests_doesntReuseSession fails
                 // setting sessionAuthenticationStrategy -> test case oneUser_multipleRequests_reusesSession fails
-                .sessionManagement().sessionAuthenticationStrategy(new NullAuthenticatedSessionStrategy()).and()
+                .sessionManagement().sessionAuthenticationStrategy(new ChangeSessionIdAuthenticationStrategy()).and()
 
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers("/api/**").authenticated()
